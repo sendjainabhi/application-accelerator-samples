@@ -1,15 +1,13 @@
 plugins {
-    id("org.springframework.boot") version "2.7.17"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    id("org.graalvm.buildtools.native") version "0.9.20"
+    id("org.springframework.boot") version "3.2.5"
+    id("io.spring.dependency-management") version "1.1.4"
+    id("org.graalvm.buildtools.native") version "0.9.28"
     id("java")
 }
 
 group = "com.vmware.tap.accelerators"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
-
-extra["snakeyaml.version"] = "1.33"
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 springBoot {
 	buildInfo()
@@ -23,6 +21,8 @@ dependencies {
     // Spring
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    // Observability support
+    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -5,6 +5,7 @@ on:
 
 jobs:
   list-tests:
+    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,20 +31,20 @@ jobs:
           password: ${{secrets.TANZUNET_PASS}}
         ports:
           - 8888:8080
-
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v2
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'adopt'
       - name: Set up NodeJS 18
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+      - name: Install xpath script
+        run: sudo apt-get install -y libxml-xpath-perl
       - name: Wait for Engine Container
         uses: ifaxity/wait-on-action@v1
         with:
