@@ -1,0 +1,4 @@
+{
+  "deploymentType": "workload",
+  "javaVersion": "21"
+}

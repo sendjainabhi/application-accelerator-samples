@@ -11,6 +11,9 @@ test -f .tanzuignore
 test ! -f kubernetes/deployment.yaml
 test ! -f kubernetes/service.yaml
 
+# Check that the POM has Java 17
+grep -q '<java.version>17</java.version>' pom.xml
+
 ./mvnw package
 
 popd
